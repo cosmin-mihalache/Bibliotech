@@ -8,6 +8,17 @@ const resolvers = {
     authors(book, args, { dataSources }, info) {
       return dataSources.bibliotechAPI.getBookAuthors(book.id);
     },
+    reviews(book, args, { dataSources }, info) {
+      return dataSources.bibliotechAPI.getBooksReviews(book.id);
+    },
+  },
+  Review: {
+    book(review, args, { dataSources }, info) {
+      return dataSources.bibliotechAPI.getBookById(review.bookId);
+    },
+    reviewedOn(review, args, { dataSources }, info) {
+      return review.createdAt;
+    },
   },
   Query: {
     author(root, { id }, { dataSources }, info) {
@@ -21,6 +32,9 @@ const resolvers = {
     },
     books(root, args, { dataSources }, info) {
       return dataSources.bibliotechAPI.getBooks();
+    },
+    review(root, { id }, { dataSources }, info) {
+      return dataSources.bibliotechAPI.getReviewById(id);
     },
   },
 };

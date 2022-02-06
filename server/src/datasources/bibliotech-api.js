@@ -32,8 +32,18 @@ class BibliotechApi extends RESTDataSource {
     return items.map((item) => item.author);
   }
 
+  async getBooksReviews(bookId) {
+    return this.get(`/reviews?bookId=${bookId}`);
+  }
+
   getBooks() {
     return this.get(`/books`);
+  }
+
+  getReviewById(id) {
+    return this.get(`/reviews/${id}`).catch(
+      err => err.message === "404: Not Found" && null
+    )
   }
 }
 
