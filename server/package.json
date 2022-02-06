@@ -1,22 +1,26 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "backend",
+  "main": "src/index.js",
   "scripts": {
-    "server:rest": "json-server -w db.json -p 5000 -r routes.json -q"
+    "server": "concurrently -k npm:server:*",
+    "server:rest": "json-server -w db.json -p 4000 -r routes.json -q",
+    "server:graphql": "nodemon --ignore db.json ./src/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "apollo-server": "^2.22.2",
-    "concurrently": "^5.3.0",
-    "dotenv": "^8.2.0",
-    "graphql": "^15.5.0",
-    "json-server": "^0.16.3",
-    "node-fetch": "^2.6.1",
-    "nodemon": "^2.0.7"
+    "apollo-datasource-rest": "^0.11.0",
+    "apollo-server": "^3.0.0",
+    "concurrently": "^7.0.0",
+    "graphql": "^15.5.1",
+    "json-server": "^0.17.0",
+    "node-fetch": "^2.6.7"
   },
-  "type": "module"
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.4"
+  }
 }
