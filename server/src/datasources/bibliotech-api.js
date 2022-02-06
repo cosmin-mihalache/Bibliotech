@@ -42,8 +42,28 @@ class BibliotechApi extends RESTDataSource {
 
   getReviewById(id) {
     return this.get(`/reviews/${id}`).catch(
-      err => err.message === "404: Not Found" && null
-    )
+      (err) => err.message === '404: Not Found' && null
+    );
+  }
+
+  async getUser(username) {
+    const [user] = await this.get(`/users?username=${username}`);
+    return user;
+  }
+
+  getUserById(id) {
+    return this.get(`/users/${id}`).catch(
+      (err) => err.message === '404: Not Found' && null
+    );
+  }
+
+  async getUserLibrary(userId) {
+    const items = await this.get(`/users/${userId}/books`);
+    return items.map((item) => item.book);
+  }
+
+  getUserReviews(userId) {
+    return this.get(`/reviews?userId=${userId}`);
   }
 }
 
