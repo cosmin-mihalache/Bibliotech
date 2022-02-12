@@ -25,6 +25,13 @@ const typeDefs = gql`
     text: String
   }
 
+  input CreateBookInput {
+    authorIds: [ID]
+    cover: String
+    summary: String
+    title: String
+  }
+
   type User {
     id: ID!
     email: String!
@@ -41,6 +48,11 @@ const typeDefs = gql`
     books: [Book]
     review(id: ID!): Review
     user(username: String!): User
+  }
+
+  type Mutation {
+    createAuthor(name: String!): Author!
+    createBook(input: CreateBookInput!): Book!
   }
 `;
 

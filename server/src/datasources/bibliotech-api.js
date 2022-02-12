@@ -65,6 +65,30 @@ class BibliotechApi extends RESTDataSource {
   getUserReviews(userId) {
     return this.get(`/reviews?userId=${userId}`);
   }
+
+  createAuthor(name) {
+    return this.post('/authors', { name });
+  }
+
+  async createBook({ authorIds, cover, summary, title }) {
+    const book = await this.post('books', {
+      ...(cover && { cover }),
+      ...(summary && { summary }),
+      title,
+    });
+
+    if (authorIds?.length) {
+      await Promise.all(
+        authorIds.map((authorId) =>
+          this.post('/bookAuthors', {
+            authorId: parseInt(authorId),
+            bookId: book.id,
+          })
+        )
+      );
+    }
+    return book;
+  }
 }
 
 module.exports = BibliotechApi;

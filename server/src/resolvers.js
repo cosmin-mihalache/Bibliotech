@@ -51,6 +51,14 @@ const resolvers = {
       return dataSources.bibliotechAPI.getUser(username);
     },
   },
+  Mutation: {
+    createAuthor(root, { name }, { dataSources }, info) {
+      return dataSources.bibliotechAPI.createAuthor(name);
+    },
+    createBook(root, { input }, { dataSources }, info) {
+      return dataSources.bibliotechAPI.createBook(input);
+    },
+  },
 };
 
 module.exports = resolvers;
