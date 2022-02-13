@@ -1,3 +1,4 @@
+const { ForbiddenError } = require('apollo-server');
 const { RESTDataSource } = require('apollo-datasource-rest');
 
 class BibliotechApi extends RESTDataSource {
@@ -88,6 +89,24 @@ class BibliotechApi extends RESTDataSource {
       );
     }
     return book;
+  }
+
+  async createReview({ bookId, rating, reviewerId, text }) {
+    const existingReview = await this.get(
+      `/reviews?bookId=${bookId}&userId=${reviewerId}`
+    );
+
+    if (existingReview.length) {
+      throw new ForbiddenError('Users can only submit one review per book');
+    }
+
+    return this.post('/reviews', {
+      ...(text && { text }),
+      bookId: parseInt(bookId),
+      createdAt: new Date().toISOString(),
+      rating,
+      userId: parseInt(reviewerId),
+    });
   }
 }
 

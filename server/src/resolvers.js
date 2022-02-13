@@ -58,6 +58,9 @@ const resolvers = {
     createBook(root, { input }, { dataSources }, info) {
       return dataSources.bibliotechAPI.createBook(input);
     },
+    createReview(root, { input }, { dataSources }, info) {
+      return dataSources.bibliotechAPI.createReview(input);
+    },
   },
 };
 
