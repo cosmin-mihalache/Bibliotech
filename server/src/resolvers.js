@@ -67,6 +67,9 @@ const resolvers = {
     updateReview(root, { input }, { dataSources }, info) {
       return dataSources.bibliotechAPI.updateReview(input);
     },
+    signUp(root, { input }, { dataSources }, info) {
+      return dataSources.bibliotechAPI.signUp(input);
+    },
   },
 };
 

@@ -45,6 +45,12 @@ const typeDefs = gql`
     text: String
   }
 
+  input SignUpInput {
+    email: String!
+    name: String!
+    username: String!
+  }
+
   type User {
     id: ID!
     email: String!
@@ -69,6 +75,7 @@ const typeDefs = gql`
     createReview(input: CreateReviewInput!): Review!
     deleteReview(id: ID!): ID!
     updateReview(input: UpdateReviewInput!): Review!
+    signUp(input: SignUpInput!): User!
   }
 `;
 
