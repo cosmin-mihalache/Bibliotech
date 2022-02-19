@@ -61,6 +61,12 @@ const resolvers = {
     createReview(root, { input }, { dataSources }, info) {
       return dataSources.bibliotechAPI.createReview(input);
     },
+    deleteReview(root, { id }, { dataSources }, info) {
+      return dataSources.bibliotechAPI.deleteReview(id);
+    },
+    updateReview(root, { input }, { dataSources }, info) {
+      return dataSources.bibliotechAPI.updateReview(input);
+    },
   },
 };
 

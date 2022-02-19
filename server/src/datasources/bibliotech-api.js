@@ -108,6 +108,18 @@ class BibliotechApi extends RESTDataSource {
       userId: parseInt(reviewerId),
     });
   }
+
+  updateReview({ id, rating, text }) {
+    return this.patch(`reviews/${id}`, {
+      rating,
+      ...(text && { text }),
+    });
+  }
+
+  async deleteReview(id) {
+    await this.delete(`/reviews/${id}`);
+    return id;
+  }
 }
 
 module.exports = BibliotechApi;
