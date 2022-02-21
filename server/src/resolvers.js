@@ -70,6 +70,12 @@ const resolvers = {
     signUp(root, { input }, { dataSources }, info) {
       return dataSources.bibliotechAPI.signUp(input);
     },
+    addBooksToLibrary(root, { input }, { dataSources }, info) {
+      return dataSources.bibliotechAPI.addBooksToLibrary(input);
+    },
+    removeBooksFromLibrary(root, { input }, { dataSources }, info) {
+      return dataSources.bibliotechAPI.removeBooksFromLibrary(input);
+    },
   },
 };
 
