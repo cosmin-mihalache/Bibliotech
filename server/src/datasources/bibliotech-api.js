@@ -133,9 +133,10 @@ class BibliotechApi extends RESTDataSource {
     return this.post('/authors', { name });
   }
 
-  async createBook({ authorIds, cover, summary, title }) {
+  async createBook({ authorIds, cover, genre, summary, title }) {
     const book = await this.post('books', {
       ...(cover && { cover }),
+      ...(genre && { genre }),
       ...(summary && { summary }),
       title,
     });
